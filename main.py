@@ -1,28 +1,27 @@
-from basicColor import basicColor
+from basicColor import BasicColor
 import cv2
 import os
-# This is a sample Python script.
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+""" Manejo de imagen y creacion de Clase. Taller 1 
 
+    main.py <path_to_image> <image_name>
+"""
 
-#def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-   # print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
+# Pulsar el botón verde en la barra superior para ejecutar el script.
 if __name__ == '__main__':
     path = input("ingresa el path de tu imagen: ")
-    image_name = input("ingresa el nombre de tu imagen seguido de . y formato: ")
+    image_name = input("ingresa el nombre de tu imagen seguido de .formato ejemplo (.png, .jpg, etc): ")
     path_file = os.path.join(path, image_name)
-    imag = cv2.imread(path_file)
+    image = cv2.imread(path_file)
 
-    # Check the image is valid
-    assert imag is not None, "There is no image at {}".format(path_file)
-    Color = basicColor()
-    Color.displayProperties(imag)
-    print(Color.displayProperties())
-
+    # Comprobar que la imagen es válida
+    assert image is not None, "There is no image at {}".format(path_file)
+    # Llamado de la función
+    Color = BasicColor(image)
+    # Extraer ropiedades de la imagen (Tamaño y Canales)
+    Color.displayproperties()
+    # Segmentacion Otsu y Binarizacion de la imagen
+    Color.makebw()
+    # Manipulacion de la imagen con valor variable de entrada en componente Hue de HSV
+    Color.colorize()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
